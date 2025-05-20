@@ -41,7 +41,7 @@ async def telegram_webhook(request: Request, chat_service: ChatService = Depends
         if active_conv:
             chat_service.end_conversation(active_conv.id)
         conversation = chat_service.start_conversation(user.id)
-        reply = "New conversation started. How can I help you?"
+        reply = "Hola! ¿Cómo te puedo ayudar?"
         chat_service.add_message(conversation.id, "bot", reply)
     else:
         conversation = chat_service.get_active_conversation(user.id)
