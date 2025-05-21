@@ -41,7 +41,18 @@ async def telegram_webhook(request: Request, chat_service: ChatService = Depends
         if active_conv:
             chat_service.end_conversation(active_conv.id)
         conversation = chat_service.start_conversation(user.id)
-        reply = "Hola! ¿Cómo te puedo ayudar?"
+        reply = (
+            "¡Hola! 👋 Soy el asistente virtual del programa de Maestría de FakeUniversity.\n\n"
+            "Puedes preguntarme sobre:\n"
+            "- Requisitos de admisión\n"
+            "- Plan de estudios\n"
+            "- Matrícula y becas\n"
+            "- Fechas límite de postulación\n"
+            "- Duración y modalidad (en línea o presencial)\n"
+            "- Profesores\n"
+            "- Oportunidades profesionales\n\n"
+            "Si tienes alguna pregunta sobre el programa de Maestría, ¡estoy aquí para ayudarte!"
+        )
         chat_service.add_message(conversation.id, "bot", reply)
     else:
         conversation = chat_service.get_active_conversation(user.id)
